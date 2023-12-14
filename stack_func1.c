@@ -3,22 +3,22 @@
 
 /**
  * add_to_stack - Adds a node to the stack.
- * @node: Pointer to the new node.
+ * @new: Pointer to the new node.
  * @line: Interger representing the line number of of the opcode.
  */
-void add_to_stack(stack_t **node, __attribute__((unused))unsigned int line)
+void add_to_stack(stack_t **new, __attribute__((unused))unsigned int line)
 {
 	stack_t *tmp;
 
-	if (node == NULL || *node == NULL)
+	if (new == NULL || *new == NULL)
 		exit(EXIT_FAILURE);
 	if (head == NULL)
 	{
-		head = *node;
+		head = *new;
 		return;
 	}
 	tmp = head;
-	head = *node;
+	head = *new;
 	head->next = tmp;
 	tmp->prev = head;
 }

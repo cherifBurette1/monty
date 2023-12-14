@@ -39,42 +39,46 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern stack_t *start;
+extern stack_t *head;
 typedef void (*op_func)(stack_t **, unsigned int);
 
-void open_file(char *file_name);
+/*file operations*/
+void open_file(char *f_name);
 int parse_line(char *buffer, int line_number, int format);
 void read_file(FILE *);
 int len_chars(FILE *);
-void find_function(char *, char *, int, int);
+void find_func(char *, char *, int, int);
 
-stack_t *create(int number);
+/*Stack operations*/
+stack_t *create(int n);
 void free(void);
 void print_stack(stack_t **, unsigned int);
 void add_to_stack(stack_t **, unsigned int);
 void add_to_queue(stack_t **, unsigned int);
 
-void call_function(op_func, char *, char *, int, int);
+void call_fun(op_func, char *, char *, int, int);
 
 void print_top(stack_t **, unsigned int);
 void pop_top(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
 void swap(stack_t **, unsigned int);
 
+/*Math operations with nodes*/
 void add(stack_t **, unsigned int);
 void sub(stack_t **, unsigned int);
 void div(stack_t **, unsigned int);
 void mul(stack_t **, unsigned int);
 void mod(stack_t **, unsigned int);
 
-
+/*String operations*/
 void print_char(stack_t **, unsigned int);
 void print_str(stack_t **, unsigned int);
 void rotl(stack_t **, unsigned int);
 
-void error(int error_number, ...);
-void more_error(int error_number, ...);
-void string_error(int error_number, ...);
+/*Error hanlding*/
+void error(int error_code, ...);
+void more_error(int error_code, ...);
+void string_error(int error_code, ...);
 void rotr(stack_t **, unsigned int);
 
 #endif

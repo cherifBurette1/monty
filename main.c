@@ -16,16 +16,16 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	open_file(argv[1]);
-	free_nodes();
+	free();
 	return (0);
 }
 
 /**
  * create - Creates a node.
- * @number: Number to go inside the node.
+ * @n: Number to go inside the node.
  * Return: Upon sucess a pointer to the node. Otherwise NULL.
  */
-stack_t *create(int number)
+stack_t *create(int n)
 {
 	stack_t *node;
 
@@ -34,7 +34,7 @@ stack_t *create(int number)
 		error(4);
 	node->next = NULL;
 	node->prev = NULL;
-	node->number = number;
+	node->n = n;
 	return (node);
 }
 
@@ -59,25 +59,25 @@ void free(void)
 
 /**
  * add_to_queue - Adds a node to the queue.
- * @node: Pointer to the new node.
+ * @new: Pointer to the new node.
  * @line: line number of the opcode.
  */
-void add_to_queue(stack_t **node, __attribute__((unused))unsigned int line)
+void add_to_queue(stack_t **new, __attribute__((unused))unsigned int line)
 {
 	stack_t *tmp;
 
-	if (node == NULL || *node == NULL)
+	if (new == NULL || *new == NULL)
 		exit(EXIT_FAILURE);
 	if (head == NULL)
 	{
-		head = *node;
+		head = *new;
 		return;
 	}
 	tmp = head;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 
-	tmp->next = *node;
-	(*node)->prev = tmp;
+	tmp->next = *new;
+	(*new)->prev = tmp;
 
 }
